@@ -9,6 +9,9 @@
         "ssr": true,
         "displayName": false
       }
+    ],
+    [
+      "inline-react-svg"
     ]
   ]
 }

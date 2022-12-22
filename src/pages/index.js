@@ -6,13 +6,14 @@
 
 import Footer from "../components/footer";
 import Navbar from "../components/Nav";
+import SearchBar from "components/search/SearchBar";
 
 
 export default function Home() {
   return (
  <div>
   <Navbar/>
-  <h1>제목쓰</h1>
+  <SearchBar/>
   <Footer/>
  </div>
   )
