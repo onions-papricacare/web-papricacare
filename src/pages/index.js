@@ -3,17 +3,18 @@
 // import Image from 'next/image'
 // import { Inter } from '@next/font/google'
 // import styles from '../styles/Home.module.css'
-
 import Footer from "../components/footer";
 import Navbar from "../components/Nav";
 import SearchBar from "components/search/SearchBar";
-
+import ToggleSwitch from "components/ToggleSwitch";
 
 export default function Home() {
   return (
  <div>
   <Navbar/>
   <SearchBar/>
+  <br/>
+  <ToggleSwitch/>
   <Footer/>
  </div>
   )

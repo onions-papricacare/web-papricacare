@@ -89,6 +89,8 @@ const RSide = styled.header`
 `;
 
 
-const CompanyAbout = styled.a`
+const CompanyAbout = styled.div`
   padding: 10px 30px;
+  list-style:none;
+  padding-left:0px;
 `;

@@ -9,3 +9,9 @@ const ResultContainer = () => {
     </ul>
   )
 }
+
+const ResultText = styled.div`
+  padding: 10px;
+`;
+
+export default ResultContainer;
