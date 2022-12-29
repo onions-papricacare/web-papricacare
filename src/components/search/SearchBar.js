@@ -1,28 +1,35 @@
 import React, { useState , useEffect } from 'react';
-// import ReactDOM from 'react-dom';
-// import Router from '../Router';
 import axios from 'axios';
 import styled from 'styled-components';
-import ResultContainer from 'components/search/ResultContainer';
+import ResultContainer from '../search/ResultContainer';
 import { BiSearchAlt2,BiXCircle } from 'react-icons/bi';
 
 const SearchBar = () => {
+   const [inputValue, setInputValue] = useState('');
+   const [resultOpen, setResultOpen] = useState(false);
+   const [searchedValue, setSearchedValue] = useState([]);
+   const [copy, setCopy]= useState([]);
 
-  const [inputValue, setInputValue] = useState('');
-   const onChangeInput = e => {
+   const onChangeInput = (e) => {
     setInputValue(e.target.value);
     }
-
 const clearValue =() => {
   setInputValue('');
 }
 
-  const getResultKeyword = async () => {
-  await axios
-    .get('https://dev.papricacare.com/v3/api-app/drugs', {
+// const onSubmitSearch = (e) => {
+//   if (e.key === "Enter") {
+//     검색결과창이 생성. 
+//   }
+// }
+
+useEffect(() => {
+  const fetch = async () =>{
+    const {data} = await axios.get('https://dev.papricacare.com/v3/api-app/drugs', {
       params: {
         q: `${inputValue}`,
-        kind: '%EC%9D%98%EC%95%BD%ED%92% 88',
+        kind: '%EC%9D%98%EC%95%BD%ED%92%88',
+        //kind: '%EC%98%81%EC%96%91%EC%A0%9C' 영양제
         rows: 100000,
       },
       headers: {
@@ -32,15 +39,26 @@ const clearValue =() => {
         Authorization: 'Bearer CW2UeZmN7dYXUl-by*FHRcEQIKVX-ukxrv9diuZbhWc',
         'Content-Type': 'application/x-www-form-urlencod ed',
       },
-    })
-    .then(response => {
-      console.log(response);
     });
-};
+    setSearchedValue(data);
+    setCopy(data);
+    setResultOpen(true);
+  }
+  fetch();
+});
+  
 
-useEffect (() => {
-  getResultKeyword ();
-},[inputValue]);
+useEffect (()=> {
+  setSearchedValue(
+  copy.filter((e) =>
+    e.name.includes(inputValue)
+  ));
+},[inputValue,copy]);
+
+// const filterValue = data.filter ((p) => {
+//   return p.name.includes(inputValue);
+// })
+
 
   return (
       <Container>
@@ -49,9 +67,8 @@ useEffect (() => {
         <Icon>
           <BiSearchAlt2 />
         </Icon>
-        <Div />
+        <Div  />
         <Input
-          type="text"
           value={inputValue}
           onChange={onChangeInput}
           placeholder="약제명으로 검색하세요"
@@ -62,11 +79,15 @@ useEffect (() => {
       </InputWrapper>
       <Button>검색</Button>
           <br />
-          <ResultContainer
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-          />
+           {resultOpen && (
+           <ResultContainer
+            searchedValue={searchedValue}
+            clearValue ={clearValue}
+            setResultOpen ={setResultOpen}
+            /> 
+            )}
         </SearchContainer>
+      
       </Container>
   );
 };
@@ -85,8 +106,6 @@ const Container = styled.section`
 const SearchContainer = styled.div`
   padding: 10px;
 `;
-
-
 
 const InputWrapper = styled.div`
   display: flex;

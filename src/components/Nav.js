@@ -8,7 +8,7 @@ function Navbar() {
     <Wrapper>
       <LSide>
         <Link href={"https://www.papricacare.com/"}>
-          <Logo src="../pages/public/assets/img/logo.svg" />
+          {/* <Logo src="../pages/public/assets/img/logo.svg" /> */}
           <Onions>팝푸리카케어</Onions>
         </Link>
       </LSide>
