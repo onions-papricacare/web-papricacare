@@ -8,7 +8,6 @@ function Navbar() {
     <Wrapper>
       <LSide>
         <Link href={"https://www.papricacare.com/"}>
-          {/* <Logo src="../pages/public/assets/img/logo.svg" /> */}
           <Onions>팝푸리카케어</Onions>
         </Link>
       </LSide>
@@ -18,7 +17,7 @@ function Navbar() {
       </RSide>
     </Wrapper>
   );
-}
+  }
 
 export default Navbar;
 
@@ -29,17 +28,17 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 3rem;
   background: rgba(0, 0, 0, 0.85);
-  padding: 10px 0;
+  border: none;
 `;
 
-const Logo = styled.img`
-  width: 130px;
-  margin-right: 20px;
-`;
+// const Logo = styled.img`
+//   width: 130px;
+//   margin-right: 20px;
+// `;
 const Onions = styled.span`
-  color: white;
-  
+  color: black;
 `;
 
 
@@ -54,11 +53,12 @@ margin left: 10px;
 
 const BtnIn = styled.a`
   padding: 10px 30px;
-  color: white;
+  color:black;
   border: 1px solid white;
   border-radius: 3px;
   text-decoration: none;
   font-weight: 700;
+  border: none;
   &:hover {
     background-color: rgba(0, 127, 255, 0.04);
   }
@@ -66,11 +66,12 @@ const BtnIn = styled.a`
 
 const InfoBtn = styled.a`
   padding: 10px 30px;
-  color: white;
+  color:black;
   border: 1px solid white;
   border-radius: 3px;
   text-decoration: none;
   font-weight: 700;
+  border: none;
   &:hover {
     background-color: rgba(0, 127, 255, 0.04);
   }

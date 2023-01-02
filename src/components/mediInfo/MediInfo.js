@@ -11,3 +11,7 @@ const MediInfo = () => {
 }
 
 export default MediInfo;
+
+const ResultText = styled.MediInfo `
+
+`

@@ -1,15 +1,12 @@
 import React, { useState , useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import ResultContainer from '../search/ResultContainer';
 import { BiSearchAlt2,BiXCircle } from 'react-icons/bi';
 
 const SearchBar = () => {
    const [inputValue, setInputValue] = useState('');
-   const [resultOpen, setResultOpen] = useState(false);
    const [searchedValue, setSearchedValue] = useState([]);
-   const [copy, setCopy]= useState([]);
-
+   const [result, setResult] = useState('');
    const onChangeInput = (e) => {
     setInputValue(e.target.value);
     }
@@ -30,30 +27,29 @@ useEffect(() => {
         q: `${inputValue}`,
         kind: '%EC%9D%98%EC%95%BD%ED%92%88',
         //kind: '%EC%98%81%EC%96%91%EC%A0%9C' 영양제
-        rows: 100000,
+        rows: 10,
       },
       headers: {
         Accept: 'application/json',
         ServiceId: '85326991-3865-4224-8386-7b3fd045b7ca',
-        DeviceId: '512',
-        Authorization: 'Bearer CW2UeZmN7dYXUl-by*FHRcEQIKVX-ukxrv9diuZbhWc',
+        DeviceId: '530',
+        Authorization: 'Bearer 1b*rlDIrXflfktmn3IkIJHBELGPLZUCTHI81cd*6a2g',
         'Content-Type': 'application/x-www-form-urlencod ed',
       },
     });
-    setSearchedValue(data);
-    setCopy(data);
-    setResultOpen(true);
+    setSearchedValue(data.list);
+    setResult (data.result);
   }
   fetch();
-});
+},[inputValue]);
   
 
-useEffect (()=> {
-  setSearchedValue(
-  copy.filter((e) =>
-    e.name.includes(inputValue)
-  ));
-},[inputValue,copy]);
+// useEffect (()=> {
+//   setSearchedValue(
+//   copy.filter((e) =>
+//     e.name.includes(inputValue)
+//   ));
+// },[inputValue,copy]);
 
 // const filterValue = data.filter ((p) => {
 //   return p.name.includes(inputValue);
@@ -76,35 +72,37 @@ useEffect (()=> {
          {inputValue.length !== 0 && (
            <BiXCircle onClick={clearValue} />
             )}
-      </InputWrapper>
       <Button>검색</Button>
-          <br />
-           {resultOpen && (
-           <ResultContainer
-            searchedValue={searchedValue}
-            clearValue ={clearValue}
-            setResultOpen ={setResultOpen}
-            /> 
-            )}
-        </SearchContainer>
+      </InputWrapper>
       
+        <>
+        <ResultContainer>
+        <ResultText> 검색결과 {result}건  </ResultText>
+        {searchedValue.map(el => (
+     <ResultItem >
+      <ItemText>{el.name}</ItemText>
+      <ItemText2>{el.form}</ItemText2>
+     </ResultItem>
+        ))}
+        </ResultContainer>
+        </>
+       </SearchContainer>
       </Container>
   );
 };
 
 const Container = styled.section`
+  
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 29px 20px;
-  max-width: 700px;
-  width: 700px;
-  padding: 20px 0px;
+  margin-top: 5rem;
+  padding: 1rem ;
 `;
 
 const SearchContainer = styled.div`
-  padding: 10px;
+ display : inline;
 `;
 
 const InputWrapper = styled.div`
@@ -112,11 +110,12 @@ const InputWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   line-height: 28.8px;
-  width: 660px;
-  padding: 20px 24px;
+  width: 700px;
   font-weight: 400;
   font-size: 16px;
-  border: 1px solid #ff8947;
+  border: 2px solid #ff8947;
+  border-radius: 3rem;
+  padding-left:2rem;
 `;
 const Icon = styled.div`
   width: 20px;
@@ -124,12 +123,13 @@ const Icon = styled.div`
 `;
 const Div = styled.div`
   padding-right: 12px;
+   
 `;
 const Input = styled.input`
-  width: 100%;
+  width: 87%;
   height: 22.69px;
   padding: 1px 2px;
-  border: none;
+  // border: none;
   outline: none;
   cursor: text;
   font-size: 18px;
@@ -138,12 +138,12 @@ const Input = styled.input`
 `;
 const Button = styled.button`
   width: 94.76px;
-  padding: 12px 24px;
+  padding: 24px 24px;
   cursor: pointer;
-  line-height: 18px;
+  line-height: 20px;
   border-width: 0;
-  border-top-right-radius: 42px;
-  border-bottom-right-radius: 42px;
+  border-top-right-radius: 45px;
+  border-bottom-right-radius: 45px;
   background-color: #ff8947;
   color: #ffffff;
   font-size: 1.12rem;
@@ -152,5 +152,37 @@ const Button = styled.button`
   letter-spacing: -0.018em;
 `;
 
+const ResultContainer = styled.div`
+background-color: white;
+border: 1px solid black;
+`
 
+const ResultItem = styled.div`
+position: relative;
+height: 40px;
+padding: 8px;
+font-size: 14px;
+display: flex;
+align-items: center;
+`;
+
+const ResultText = styled.div`
+ padding: 1rem;
+ ${({result}) => result && css`
+  color: #ff8947;
+ ` }
+`;
+
+
+const ItemText = styled.span`
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(0%, -50%);
+`;
+
+const ItemText2 = styled(ItemText)`
+ left : 90%;
+`;
 export default SearchBar;

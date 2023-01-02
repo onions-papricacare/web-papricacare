@@ -3,29 +3,11 @@ import React from "react";
 import styled from "@emotion/styled";
 
 
-const Detail = ({ clicked, setClicked }) => {
+const Detail = () => {
     return (
         <>
-            <Overlay onClick={() => setClicked()} />
             <Container>
-                <h2>연락처 정보</h2>
-                <img src={clicked.image} alt="프로필사진" />
-                <Info>
-                    <InfoLeft> Name : </InfoLeft>
-                    <InfoRight>{clicked.name}</InfoRight>
-                </Info>
-                <Info>
-                    <InfoLeft> Phone : </InfoLeft>
-                    <InfoRight>{clicked.phone}</InfoRight>
-                </Info>
-                <Info>
-                    <InfoLeft> Company : </InfoLeft>
-                    <InfoRight>{clicked.company.name}</InfoRight>
-                </Info>
-                <Info>
-                    <InfoLeft> Email : </InfoLeft>
-                    <InfoRight>{clicked.email}</InfoRight>
-                </Info>
+             
             </Container>
         </>
     );

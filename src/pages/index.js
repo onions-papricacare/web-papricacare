@@ -1,14 +1,16 @@
 import Footer from "../components/footer";
 import Navbar from "../components/Nav";
 import SearchBar from "../components/search/SearchBar";
+import ToggleSwitch from "components/ToggleSwitch";
 
 export default function Home() {
   return (
  <div>
   <Navbar/>
+  <ToggleSwitch/>
   <SearchBar/>
   <br/>
-  {/* <ToggleSwitch/> */}
+  {/* <Detail/> */}
   <Footer/>
  </div>
   )
