@@ -11,6 +11,7 @@ function Navbar() {
           <Onions>팝푸리카케어</Onions>
         </Link>
       </LSide>
+
       <RSide>
         <InfoBtn href="https://www.papricacare.com/">서비스 소개</InfoBtn>
         <BtnIn href="https://www.papricacare.com/">앱 다운로드</BtnIn>
@@ -27,10 +28,11 @@ const Wrapper = styled.div`
   z-index: 1000;
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 98%;
   height: 3rem;
-  background: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
   border: none;
+  padding: 1.5rem;
 `;
 
 // const Logo = styled.img`
@@ -39,15 +41,15 @@ const Wrapper = styled.div`
 // `;
 const Onions = styled.span`
   color: black;
+  
 `;
 
 
-const LSide = styled.header`
+const LSide = styled.div`
   margin left: 10px;
 `;
 
-const RSide = styled.header`
-margin left: 10px;
+const RSide = styled.div`
 `;
 
 
@@ -66,7 +68,7 @@ const BtnIn = styled.a`
 
 const InfoBtn = styled.a`
   padding: 10px 30px;
-  color:black;
+  color: gray;
   border: 1px solid white;
   border-radius: 3px;
   text-decoration: none;

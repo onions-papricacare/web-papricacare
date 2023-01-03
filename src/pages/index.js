@@ -2,6 +2,7 @@ import Footer from "../components/footer";
 import Navbar from "../components/Nav";
 import SearchBar from "../components/search/SearchBar";
 import ToggleSwitch from "components/ToggleSwitch";
+// import Detail from "components/Detail/detail" 
 
 export default function Home() {
   return (

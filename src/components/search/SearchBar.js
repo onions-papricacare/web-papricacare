@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState , useEffect,useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { BiSearchAlt2,BiXCircle } from 'react-icons/bi';
@@ -7,12 +7,21 @@ const SearchBar = () => {
    const [inputValue, setInputValue] = useState('');
    const [searchedValue, setSearchedValue] = useState([]);
    const [result, setResult] = useState('');
-   const onChangeInput = (e) => {
-    setInputValue(e.target.value);
-    }
+   const onChangeInput = useCallback ( e => {
+    debounce(setInputValue(e.target.value), 500);
+    },[inputValue])
+
 const clearValue =() => {
   setInputValue('');
 }
+
+const debounce = (callback, duration) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => callback(...args), duration);
+  };
+};
 
 // const onSubmitSearch = (e) => {
 //   if (e.key === "Enter") {
@@ -74,15 +83,18 @@ useEffect(() => {
             )}
       <Button>검색</Button>
       </InputWrapper>
-      
         <>
         <ResultContainer>
-        <ResultText> 검색결과 {result}건  </ResultText>
+        <ResultText>
+          <SearchResult>검색결과</SearchResult> 
+          <ResultName> {result}건</ResultName> 
+        </ResultText>
         {searchedValue.map(el => (
-     <ResultItem >
-      <ItemText>{el.name}</ItemText>
-      <ItemText2>{el.form}</ItemText2>
-     </ResultItem>
+        <ResultItem >
+        {/* <Image> "{el.image}"</Image> */}
+        <ItemText>{el.name}</ItemText>
+        <ItemText2>{el.form}</ItemText2>
+       </ResultItem>
         ))}
         </ResultContainer>
         </>
@@ -97,7 +109,7 @@ const Container = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 5rem;
+  margin-top: 1rem;
   padding: 1rem ;
 `;
 
@@ -129,7 +141,7 @@ const Input = styled.input`
   width: 87%;
   height: 22.69px;
   padding: 1px 2px;
-  // border: none;
+  border: none;
   outline: none;
   cursor: text;
   font-size: 18px;
@@ -166,13 +178,17 @@ display: flex;
 align-items: center;
 `;
 
+
 const ResultText = styled.div`
  padding: 1rem;
- ${({result}) => result && css`
-  color: #ff8947;
- ` }
 `;
-
+const SearchResult = styled.div`
+ display:inline;
+`
+const ResultName = styled.div `
+display: inline;
+color: #ff8947
+`
 
 const ItemText = styled.span`
   display: inline-block;

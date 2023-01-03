@@ -39,10 +39,10 @@ const button = styled.button`
   margin-left: 1rem;
   width: 13rem;
   height: 2.7rem;
-  color: #ffffff;
-  background-color:#9C9C9C ;
-  font-weight: 700;
-  font-size: 14px;
+  color: black;
+  background-color:#F3F4F6 ;
+  font-weight: 400;
+  font-size: 13px;
   cursor: pointer;
   z-index: 200;
   border: none;
@@ -67,8 +67,8 @@ const Switch = styled.div`
   position: relative;
   width: 29rem;
   height: 2.8rem;
-  margin: 7rem auto 1rem auto;
-  background-color: #9c9c9c;
+  margin: 5rem auto 1rem auto;
+  background-color: #F3F4F6;
   border-radius : 5rem; 
   span {
     position: absolute;
