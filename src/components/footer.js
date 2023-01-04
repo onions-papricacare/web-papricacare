@@ -18,22 +18,16 @@ const Footer = () => {
           </CompanyInfo>
       </LSide>
       <RSide>
-      <CompanyAbout>
-            <li>
-              <FaFacebookSquare />
-            </li>
-            <li>
-              <SiNaver />
-            </li>
-            <li>
-              <FaInstagram />
-            </li>
-          </CompanyAbout>
+           <CompanyImage>
+              <li><FaFacebookSquare /></li>
+              <li><SiNaver /></li>
+              <li><FaInstagram /></li>
+          </CompanyImage>
           <CompanyAbout>
             <li>이용 약관</li>
             <li>개인정보 처리방침</li>
             <li>개인정보 수집 및 이용동의</li>
-      </CompanyAbout>
+          </CompanyAbout>
       </RSide>
     </Wrapper> 
     </FooterContainer>
@@ -49,7 +43,7 @@ const FooterContainer = styled.div`
   z-index: 1000;
   display: flex;
   justify-content: space-between;
-  // flex-direction: column;
+  flex-direction: column;
   align-items: center;
   width: 100%;
   // background: rgba(0, 0, 0, 0.85);
@@ -78,17 +72,18 @@ const TimeInfo = styled.div`
 
 const LSide = styled.header`
   display: flex;
+  flex-direction: row;
   align-items: center;
   margin-left: 10px;
 `;
 
 const RSide = styled.header`
-  display: flex;
   align-items: center;
   font-size: 14px;
 `;
 
-
+const CompanyImage = styled.div`
+`
 const CompanyAbout = styled.div`
   padding: 10px 30px;
   list-style:none;

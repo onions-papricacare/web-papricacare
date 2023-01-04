@@ -7,8 +7,8 @@ function Navbar() {
   return (
     <Wrapper>
       <LSide>
-        <Link href={"https://www.papricacare.com/"}>
-          <Onions>팝푸리카케어</Onions>
+        <Link href="https://www.papricacare.com/">
+        <Logo src='/Logo.svg' alt='로고'/>
         </Link>
       </LSide>
 
@@ -35,23 +35,16 @@ const Wrapper = styled.div`
   padding: 1.5rem;
 `;
 
-// const Logo = styled.img`
-//   width: 130px;
-//   margin-right: 20px;
-// `;
-const Onions = styled.span`
-  color: black;
-  
-`;
-
-
 const LSide = styled.div`
   margin left: 10px;
 `;
 
 const RSide = styled.div`
+font-family: 'ONE Mobile Title';
 `;
+const Logo = styled.img`
 
+`;
 
 const BtnIn = styled.a`
   padding: 10px 30px;

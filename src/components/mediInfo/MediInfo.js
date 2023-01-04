@@ -1,13 +1,14 @@
 import React from 'react'; 
 import styled from 'styled-components';
+import dayjs from 'dayjs'; 
 
 const MediInfo= () => {
-
+const dayjs = require ('dayjs')
   return (
     <RankingContainer>
       <TitleWrapper>
         <Title>건강정보</Title>
-        <DateTime>2023년 01월 02일 </DateTime>
+        <DateTime>{dayjs().format("yyyy년 MM월 DD일 HH시 MM분 SS초")}</DateTime>
       </TitleWrapper>
       <RankingDrugs>
         <ul>

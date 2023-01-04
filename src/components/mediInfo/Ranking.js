@@ -1,5 +1,6 @@
 import React from 'react'; 
 import styled from 'styled-components';
+import dayjs from 'dayjs'; 
 
 const Ranking = () => {
 
@@ -7,7 +8,7 @@ const Ranking = () => {
     <RankingContainer>
       <TitleWrapper>
         <Title>오늘 처방약 순위</Title>
-        <DateTime>2023년 01월 02일 </DateTime>
+        <DateTime>{dayjs().format("yyyy년 MM월 DD일 HH시 MM분 SS초")}</DateTime>
       </TitleWrapper>
       <RankingDrugs>
         <ul>

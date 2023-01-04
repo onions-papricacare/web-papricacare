@@ -1,4 +1,4 @@
-import React, { useState , useEffect,useCallback } from 'react';
+import React, { useState , useEffect, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { BiSearchAlt2,BiXCircle } from 'react-icons/bi';
@@ -7,13 +7,15 @@ const SearchBar = () => {
    const [inputValue, setInputValue] = useState('');
    const [searchedValue, setSearchedValue] = useState([]);
    const [result, setResult] = useState('');
+
    const onChangeInput = useCallback ( e => {
     debounce(setInputValue(e.target.value), 500);
-    },[inputValue])
+    },[inputValue]);
 
 const clearValue =() => {
   setInputValue('');
 }
+
 
 const debounce = (callback, duration) => {
   let timer;
@@ -52,18 +54,6 @@ useEffect(() => {
   fetch();
 },[inputValue]);
   
-
-// useEffect (()=> {
-//   setSearchedValue(
-//   copy.filter((e) =>
-//     e.name.includes(inputValue)
-//   ));
-// },[inputValue,copy]);
-
-// const filterValue = data.filter ((p) => {
-//   return p.name.includes(inputValue);
-// })
-
 
   return (
       <Container>
@@ -120,9 +110,9 @@ const SearchContainer = styled.div`
 const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  flex-direction: row;
-  line-height: 28.8px;
-  width: 700px;
+  line-height: 28px;
+  width: 500px;
+  height: 50px;
   font-weight: 400;
   font-size: 16px;
   border: 2px solid #ff8947;
@@ -149,8 +139,9 @@ const Input = styled.input`
   text-align: start;
 `;
 const Button = styled.button`
-  width: 94.76px;
-  padding: 24px 24px;
+  width: 21%;
+  height: 3.4rem;
+  padding: 19px 1px;
   cursor: pointer;
   line-height: 20px;
   border-width: 0;
@@ -159,9 +150,9 @@ const Button = styled.button`
   background-color: #ff8947;
   color: #ffffff;
   font-size: 1.12rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.02em;
 `;
 
 const ResultContainer = styled.div`
@@ -187,7 +178,8 @@ const SearchResult = styled.div`
 `
 const ResultName = styled.div `
 display: inline;
-color: #ff8947
+color: #ff8947;
+font-weight: 700;
 `
 
 const ItemText = styled.span`
