@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <Wrapper>
       <LSide>
-        <Link href="https://www.papricacare.com/">
+        <Link href="/">
         <Logo src='/Logo.svg' alt='로고'/>
         </Link>
       </LSide>
