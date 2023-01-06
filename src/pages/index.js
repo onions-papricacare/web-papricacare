@@ -2,7 +2,7 @@ import Footer from "../components/footer";
 import Navbar from "../components/Nav";
 import SearchBar from "../components/search/SearchBar";
 import ToggleSwitch from "components/ToggleSwitch";
-// import Detail from "components/Detail/detail" 
+import Detail from "pages/details/Detail";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
   <ToggleSwitch/>
   <SearchBar/>
   <br/>
-  {/* <Detail/> */}
+  <Detail/>
   <Footer/>
  </div>
   )
