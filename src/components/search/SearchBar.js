@@ -2,11 +2,12 @@ import React, { useState , useEffect, useCallback } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { BiSearchAlt2,BiXCircle } from 'react-icons/bi';
-
+import SearchedResult from './SearchedResult';
 const SearchBar = () => {
    const [inputValue, setInputValue] = useState('');
    const [searchedValue, setSearchedValue] = useState([]);
    const [result, setResult] = useState('');
+   const [resultOpen, setResultOpen] = useState(false);
 
    const onChangeInput = useCallback ( e => {
     debounce(setInputValue(e.target.value), 500);
@@ -15,7 +16,7 @@ const SearchBar = () => {
 const clearValue =() => {
   setInputValue('');
 }
-
+ 
 
 const debounce = (callback, duration) => {
   let timer;
@@ -25,34 +26,49 @@ const debounce = (callback, duration) => {
   };
 };
 
-// const onSubmitSearch = (e) => {
-//   if (e.key === "Enter") {
-//     검색결과창이 생성. 
-//   }
-// }
 
 useEffect(() => {
   const fetch = async () =>{
-    const {data} = await axios.get('https://dev.papricacare.com/v3/api-app/drugs', {
+    const {data} = await axios.get('https://dev.papricacare.com/v4/api-www/drugs/medi?', {
       params: {
         q: `${inputValue}`,
-        kind: '%EC%9D%98%EC%95%BD%ED%92%88',
-        //kind: '%EC%98%81%EC%96%91%EC%A0%9C' 영양제
         rows: 10,
       },
       headers: {
         Accept: 'application/json',
-        ServiceId: '85326991-3865-4224-8386-7b3fd045b7ca',
-        DeviceId: '530',
-        Authorization: 'Bearer 1b*rlDIrXflfktmn3IkIJHBELGPLZUCTHI81cd*6a2g',
-        'Content-Type': 'application/x-www-form-urlencod ed',
-      },
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
     });
     setSearchedValue(data.list);
     setResult (data.result);
   }
   fetch();
 },[inputValue]);
+
+
+
+// useEffect(() => {
+//   const fetch = async () =>{
+//     const {data} = await axios.get('https://dev.papricacare.com/v3/api-app/drugs', {
+//       params: {
+//         q: `${inputValue}`,
+//         kind: '%EC%9D%98%EC%95%BD%ED%92%88',
+//         //kind: '%EC%98%81%EC%96%91%EC%A0%9C' 영양제
+//         rows: 10,
+//       },
+//       headers: {
+//         Accept: 'application/json',
+//         ServiceId: '85326991-3865-4224-8386-7b3fd045b7ca',
+//         DeviceId: '530',
+//         Authorization: 'Bearer 1b*rlDIrXflfktmn3IkIJHBELGPLZUCTHI81cd*6a2g',
+//         'Content-Type': 'application/x-www-form-urlencod ed',
+//       },
+//     });
+//     setSearchedValue(data.list);
+//     setResult (data.result);
+//   }
+//   fetch();
+// },[inputValue]);
   
 
   return (
@@ -73,21 +89,14 @@ useEffect(() => {
             )}
       <Button>검색</Button>
       </InputWrapper>
-        <>
-        <ResultContainer>
-        <ResultText>
-          <SearchResult>검색결과</SearchResult> 
-          <ResultName> {result}건</ResultName> 
-        </ResultText>
-        {searchedValue.map(el => (
-        <ResultItem >
-        {/* <Image> "{el.image}"</Image> */}
-        <ItemText>{el.name}</ItemText>
-        <ItemText2>{el.form}</ItemText2>
-       </ResultItem>
-        ))}
-        </ResultContainer>
-        </>
+       {inputValue.length !==0 && (  
+       <SearchedResult
+        result ={result}
+        setResultOpen = {setResultOpen}
+        searchedValue ={searchedValue}
+        clearValue ={clearValue}
+       />
+        )} 
        </SearchContainer>
       </Container>
   );
@@ -155,43 +164,5 @@ const Button = styled.button`
   letter-spacing: -0.02em;
 `;
 
-const ResultContainer = styled.div`
-background-color: white;
-border: 1px solid black;
-overflow:scroll;
-`
 
-const ResultItem = styled.div`
-position: relative;
-height: 40px;
-padding: 8px;
-font-size: 14px;
-display: flex;
-align-items: center;
-`;
-
-
-const ResultText = styled.div`
- padding: 1rem;
-`;
-const SearchResult = styled.div`
- display:inline;
-`
-const ResultName = styled.div `
-display: inline;
-color: #ff8947;
-font-weight: 700;
-`
-
-const ItemText = styled.span`
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 15%;
-  transform: translate(0%, -50%);
-`;
-
-const ItemText2 = styled(ItemText)`
- left : 90%;
-`;
 export default SearchBar;

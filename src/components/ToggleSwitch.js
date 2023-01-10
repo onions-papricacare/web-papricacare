@@ -37,7 +37,7 @@ export default ToggleSwitch;
 const button = styled.button`
   position: relative;
   margin-left: 1rem;
-  width: 13rem;
+  width: 11rem;
   height: 2.7rem;
   color: black;
   background-color:#F3F4F6 ;
@@ -66,7 +66,7 @@ transition:color 1s ease;
 const Switch = styled.div`
   position: relative;
   width: 29rem;
-  height: 2.8rem;
+  height: 3rem;
   margin: 5rem auto 1rem auto;
   background-color: #F3F4F6;
   border-radius : 5rem; 

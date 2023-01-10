@@ -1,19 +1,50 @@
-import React, {useState,useEffect} from "react";
-import Link from "next/link";
+import React, {useState,useEffect,useRouter} from "react";
+// import Link from "next/link";
 import axios from "axios";
 import styled from 'styled-components';
 import DetailContents from '../../components/Detail/DetailTiltle/DetailContents';
 import DetailTitle from '../../components/Detail/DetailTiltle/DetailTitle';
 
 const Detail = () => {
-
+const router= useRouter();
+const [id, name]= router.query.params;
    const [drugsDetail, setDrugsDetail] = useState([]);
 
-useEffect (() => { 
- axios.get ('https://dev.papricacare.com/v4/api-www/drugs/medi/${id}')
- .then(response => response.json())
- .then(result => setDrugsDetail(result));
-},[]);
+// useEffect (() => { 
+//  axios.get ('https://dev.papricacare.com/v4/api-www/drugs/medi/${id}'
+//  .then(data => {
+//   setDrugsDetail(data)
+// )},[
+
+  useEffect(() => {
+    axios.get('https://dev.papricacare.com/v4/api-www/drugs/medi/',{
+      params: {
+         id: `${id}`
+      },
+      headers: {
+        Accept: 'application/json',
+        ServiceId: '85326991-3865-4224-8386-7b3fd045b7ca',
+        DeviceId: '530',
+        Authorization: 'Bearer 1b*rlDIrXflfktmn3IkIJHBELGPLZUCTHI81cd*6a2g',
+        'Content-Type': 'application/x-www-form-urlencod ed',
+      },
+    } )
+      .then (result=> {
+        console.log("통신 결과 : ", result);
+        setDrugsDetail(result.data);
+      })
+        // console.log("통신 결과 : ", result);
+        // console.log("status : ", result.status);
+        // console.log("data : ", result.data);
+      // .then( result => setSearchedRelatedValue(result.data))
+      .catch (function (error) {
+          console.log("에러 발생 : ", error);
+          })
+  },[]);
+
+
+
+
 
 
   return (
@@ -99,3 +130,15 @@ const DrugList = styled.div `
 
 
 // export default id;
+
+
+export async function getServerSideProps() {
+  const { results } = await (
+    await axios(`https://dev.papricacare.com/v4/api-www/drugs/medi`)
+  ).json();
+  return {
+    props: {
+      results,
+    },
+  };
+}
