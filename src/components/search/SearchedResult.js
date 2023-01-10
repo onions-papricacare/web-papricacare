@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useRouter} from 'next/router';
+import Router from 'next/router';
 
 const SearchedResult = ({searchedValue, result, setResultOpen, clearValue}) => {
-
-   const router = useRouter();
-  
- const resultClick = el =>  {
+ 
+ const resultClick = (el) =>  {
       setResultOpen(false);
-      router.push(`/detail/${el.name}/${el.id}`);
+      //  Router.push(`/detail/${el.name}/${el.id}`);
+      Router.push ({
+       pathname: `/detail/${el.name}/${el.id}`,
+      })
       clearValue();
    };
 

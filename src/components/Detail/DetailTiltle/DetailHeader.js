@@ -1,14 +1,14 @@
 import React from 'react'; 
 import styled from 'styled-components';
 
-const DetailHeader = () => {
+const DetailHeader = ({title}) => {
 
   return (
    <CurrentContainer>
     <DrugNav>
     <Search>의약품검색</Search>
     <DrugDetail> > 의약품 상세정보 > </DrugDetail>
-    <RealDrug>아스피린 10mg</RealDrug>
+    <RealDrug>{title}</RealDrug>
     </DrugNav>
    </CurrentContainer>
   )

@@ -3,12 +3,12 @@ import styled from 'styled-components';
 // import DetailTapButton from './DetailTapButton';
 import DetailHeader from './DetailHeader';
 
-const DetailTitle = () => {
+const DetailTitle = ({title}) => {
   return (
       <TitleWrapper>
-        <DetailHeader/>
+        <DetailHeader title={title}/>
         <LSide>
-        <Title><h1>보령아스피린 10mg</h1></Title>
+        <Title><h1>{title}</h1></Title>
         <Ingredient>성분명: 파마사르탄칼륨 </Ingredient>
         {/* <DetailTapButton/> */}
         </LSide>
