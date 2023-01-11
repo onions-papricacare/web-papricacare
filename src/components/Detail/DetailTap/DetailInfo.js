@@ -1,17 +1,16 @@
 import React from 'react'; 
 import styled from 'styled-components';
 
-const DetailInfo = () => {
+const DetailInfo = ({drugsDetail}) => {
   return (
       <DetailWrapper>
-        <SummarizedExplanation>
-          <h1>요약설명</h1>
+          <SummarizedExplanation>
+            <h1>하이</h1>
           <h3>한 줄 요약 설명 </h3>
-           <Summary>카나브정은 보령제약에서 출시되는 혈압을 납추는</Summary>
-          </SummarizedExplanation>
-        {/* <DetailTapButton/> */}
-          <image> </image>
+          <Summary>카나브정은 보령제약에서 출시되는 혈압을 납추는</Summary>
+        </SummarizedExplanation>
       </DetailWrapper>
+      
   )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'; 
 import styled from 'styled-components';
 
-const DrugAttribute = () => {
+const DrugAttribute = (drugsDetail) => {
   return (
       <DetailWrapper>
         <SummarizedExplanation>

@@ -65,29 +65,23 @@
 
 import axios from 'axios'
 import styled from 'styled-components';
-import DetailContents from '../../components/Detail/DetailTiltle/DetailContents';
-import DetailTitle from '../../components/Detail/DetailTiltle/DetailTitle';
 import { useRouter } from "next/router";
-import { useEffect } from 'react';
- 
-export default function Detail({ params }) {
+
+ function Detail({ params }) {
   const router = useRouter();
-  const [title , id] = params|| [];
-
-
+  const [title, id] = params || [];
+  
   return(
     <div>
-      <DetailTitle title={title}/>
-      <h2>{title}</h2>
       <h4>{id}</h4>
     </div>
-  )}
+  );
+}
 
+export default Detail; 
 
-export function getServerSideProps({ params: { params } }) {
-  // console.log(params);
+export const getServerSideProps = ({ params: { params } }) => {
   return {
     props: { params },
   };
 }
-

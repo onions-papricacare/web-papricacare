@@ -1,7 +1,7 @@
 import React from 'react'; 
 import styled from 'styled-components';
 
-const PrescriptionDisease = () => {
+const PrescriptionDisease = (drugsDetail) => {
   return (
       <DetailWrapper>
         <SummarizedExplanation>

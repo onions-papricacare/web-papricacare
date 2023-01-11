@@ -8,16 +8,16 @@ import QnA from '../DetailTap/QnA';
 import SummaryDetail from'../DetailTap/SummaryDetail';
 
 
-const DetailContents= () => {
+const DetailContents= ( drugsDetail ) => {
  const [openTab, setOpenTab] = useState ( "요약설명");
 
 
  const MAPPING_OBJ = {
-  요약설명: <DetailInfo />,
-  약제특성: <DrugAttribute/>,
-  처방질병: <PrescriptionDisease/>,
-  상세정보: <SummaryDetail/>,
-  QnA: <QnA/>
+  요약설명: <DetailInfo drugsDetail={drugsDetail} />,
+  약제특성: <DrugAttribute drugsDetail={drugsDetail}/>,
+  처방질병: <PrescriptionDisease drugsDetail={drugsDetail}/>,
+  상세정보: <SummaryDetail drugsDetail={drugsDetail}/>,
+  QnA: <QnA drugsDetail={drugsDetail}/>
  };
 
   return (
