@@ -1,7 +1,7 @@
 import React from 'react'; 
 import styled from 'styled-components';
 
-const QnA = (drugsDetail) => {
+const QnA = ({data}) => {
   return (
       <DetailWrapper>
         <SummarizedExplanation>

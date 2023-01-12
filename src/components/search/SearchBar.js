@@ -28,6 +28,7 @@ const debounce = (callback, duration) => {
 
 
 useEffect(() => {
+  if(inputValue.length){
   const fetch = async () =>{
     const {data} = await axios.get('https://dev.papricacare.com/v4/api-www/drugs/medi?', {
       params: {
@@ -36,13 +37,16 @@ useEffect(() => {
       },
       headers: {
         Accept: 'application/json',
+        ServiceId: '85326991-3865-4224-8386-7b3fd045b7ca',
+    DeviceId: '530',
+    Authorization: 'Bearer 1b*rlDIrXflfktmn3IkIJHBELGPLZUCTHI81cd*6a2g',
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
     setSearchedValue(data.list);
     setResult (data.result);
   }
-  fetch();
+  fetch();}
 },[inputValue]);
 
 

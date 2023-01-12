@@ -8,7 +8,7 @@ const SearchedResult = ({searchedValue, result, setResultOpen, clearValue}) => {
       setResultOpen(false);
       //  Router.push(`/detail/${el.name}/${el.id}`);
       Router.push ({
-       pathname: `/detail/${el.name}/${el.id}`,
+       pathname: `/detail/${el.id}`,
       })
       clearValue();
    };
