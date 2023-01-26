@@ -1,18 +1,25 @@
 import axios from 'axios';
 import DetailContents from 'components/Detail/DetailTiltle/DetailContents';
 import DetailTitle from 'components/Detail/DetailTiltle/DetailTitle';
-
+import styled from 'styled-components';
  function Detail({data}) {
   
   return(
-    <div>
+    <DetailWrapper>
       <DetailTitle data={data}/>
       <DetailContents data={data} />
-    </div>
+    </DetailWrapper>
   );
 }
 
+
 export default Detail; 
+
+
+const DetailWrapper = styled.div`
+padding-left: 6rem;
+padding-right: 10rem;
+`
 
 
 export const getServerSideProps = async({query}) => {
@@ -23,9 +30,13 @@ export const getServerSideProps = async({query}) => {
     'Content-Type': 'application/x-www-form-urlencoded'
   }})
   const data= res.data;
- 
+  if (data == undefined) {
+    return (<>
+    Error
+    </>)
+  }else {
   return {
     props: { data }
   }
-};
+}}
 

@@ -12,16 +12,12 @@ export default function App({ Component, pageProps }) {
         <p>This is an example header!</p>
       </Nav>
        
-       <ToggleSwitch>
-        <p>토글스위치입니당 </p>
-       </ToggleSwitch>
-
       <SearchBar>
        <p>서치바입니당 </p>
       </SearchBar> 
        
        <Component {...pageProps} />
-
+        
  
        <Footer>
         <p>This is an example footer!</p>

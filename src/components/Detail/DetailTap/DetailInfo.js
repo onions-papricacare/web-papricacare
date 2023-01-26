@@ -5,9 +5,9 @@ const DetailInfo = ({data}) => {
   return (
       <DetailWrapper>
           <SummarizedExplanation>
-          <h3>한 줄 요약 설명 </h3>
+          <h1>한 줄 요약 설명 </h1>
           <Summary>{data.feature}</Summary>
-        </SummarizedExplanation>
+          </SummarizedExplanation>
       </DetailWrapper>
       
   )

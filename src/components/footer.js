@@ -19,9 +19,9 @@ const Footer = () => {
       </LSide>
       <RSide>
            <CompanyImage>
-              <li><FaFacebookSquare /></li>
-              <li><SiNaver /></li>
-              <li><FaInstagram /></li>
+              <FaFacebookSquare />
+              <SiNaver />
+              <FaInstagram />
           </CompanyImage>
           <CompanyAbout>
             <li>이용 약관</li>
@@ -83,6 +83,8 @@ const RSide = styled.header`
 `;
 
 const CompanyImage = styled.div`
+flex-direction : row;
+color: gray;
 `
 const CompanyAbout = styled.div`
   padding: 10px 30px;

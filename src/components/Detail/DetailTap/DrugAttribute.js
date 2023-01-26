@@ -6,7 +6,11 @@ const DrugAttribute = ({data}) => {
       <DetailWrapper>
         <SummarizedExplanation>
           <h1>약제특성</h1>
-          <h3>한 줄 요약 설명 </h3>
+          <h3>특장점  </h3>
+           <Summary></Summary>
+           <h3>주의사항  </h3>
+           <Summary>카나브정은 보령제약에서 출시되는 혈압을 납추는</Summary>
+           <h3>약물작용원리 </h3>
            <Summary>카나브정은 보령제약에서 출시되는 혈압을 납추는</Summary>
           </SummarizedExplanation>
         {/* <DetailTapButton/> */}

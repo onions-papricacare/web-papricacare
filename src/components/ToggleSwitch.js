@@ -3,87 +3,96 @@ import react , {useState} from 'react';
 
 
 const ToggleSwitch = () => {
-const [value, setValue ] = useState('review');
-const onChangeMode = () => {
-  if (value=== "info") {
-    setValue("info");
-  } else if (value === "review") {
-    setValue("review");
-  }
-}
-  return (
+const [value, setValue ] = useState('drug');
 
+const onChangeMode = (value) => {
+  value == "drug" ? setValue("drug") : (value== "nutri" ? setValue("nutri") :setValue("dur"))
+};
+  return (
 <Switch value={value}>
   <span /> 
-  <InfoBtn // 의약품검색 버튼 
+  <DurBtn // Dur검색 버튼 
+    type="button"
+    onClick={() => onChangeMode("dur")}
+    value={value}
+  >	함께 복약해도 될까요?</DurBtn> 
+  <DrugBtn //의약품 검색 버튼 
     type="button"
     value={value}
-    onClick={() => onChangeMode("info ")}
-  >	의약품검색 </InfoBtn> 
-  <ReviewBtn //건기식 검색 버튼 
-    type="button"
-    value={value}
-    onClick={() => onChangeMode("review")}
+    onClick={() => onChangeMode("drug")}
   >
-  	건기식검색
-  </ReviewBtn>
+  	의약품 검색
+  </DrugBtn>
+  <NutriBtn //건기식 검색버튼
+    value={value}
+    onClick={() => onChangeMode("nutri")}
+  >
+    건기식 검색
+  </NutriBtn>
 </Switch>
   );
 
 };
-
 export default ToggleSwitch;
 
-const button = styled.button`
+
+const Switch = styled.div`
+  width: 34rem;
+  height: 3rem;
+  color: #696969;
+  background-color: #F3F4F6;
+  border-radius : 5rem; 
+  display: inline;
+  margin: 2rem;
+  span {
+    position: absolute;
+    width: 11rem;
+    height: 2.4rem;
+    margin-top: 4px;
+    margin-left: 0.8rem;
+    border-radius : 5rem; 
+    background-color: #ffffff;
+    color:black;
+    transition: all 0.6s ease-in-out;
+    z-index: 2;
+    ${({ value }) => //props에 따른 삼항연산자 처리
+    value == "drug"
+      ? "transform: translateX(10rem)"
+      : ( value == "nutri" ? "transform: translateX(21.5rem)" : "transform: translateX(0rem)")}
+   `
+
+
+ const button = styled.button`
   position: relative;
-  margin-left: 1rem;
   width: 11rem;
   height: 2.7rem;
-  color: black;
   background-color:#F3F4F6 ;
   font-weight: 400;
   font-size: 13px;
-  cursor: pointer;
-  z-index: 200;
   border: none;
-`;
-//button 컴포넌트 상속
-const InfoBtn = styled(button)`
-border-radius : 5rem; 
-${({ value }) =>
-    value === "info" ? "color: #9C9C9C;" : null}
+  cursor: pointer; 
 `;
 
-//button 컴포넌트 상속
-const ReviewBtn = styled(button)`
+const DurBtn = styled(button)`
 border-radius : 5rem; 
+${({ value }) =>
+value == "dur" ? "color: black" : "color :#696969"}
+`;
+
+
+
+const DrugBtn = styled(button)`
 transition:color 1s ease;
-  ${({ value }) =>
-    value === "review" ? "color: #9C9C9C;" : null}
-    transition:color 1s ease;
+${({ value }) =>
+value === "drug" ? "color: black" : null}
 `;
-        
-const Switch = styled.div`
-  position: relative;
-  width: 29rem;
-  height: 3rem;
-  margin: 5rem auto 1rem auto;
-  background-color: #F3F4F6;
-  border-radius : 5rem; 
-  span {
-    position: absolute;
-    width: 15rem;
-    height: 40px;
-    top: 2px;
-    border-radius: 1000px;
-    background-color: #ffffff;
-    transition: all 0.6s ease-in-out;
-    z-index: 999;
-    margin-left:0.2rem;
-    ${({ value }) => //props에 따른 삼항연산자 처리
-      value === "info"
-        ? "transform: translateX(0px)"
-        : "transform: translateX(90%)"}
-  }
+
+const NutriBtn = styled(button)`
+border-radius : 5rem; 
+${({ value }) =>
+value === "nutri" ? "color: black" : null}
 `;
+
+
+
 

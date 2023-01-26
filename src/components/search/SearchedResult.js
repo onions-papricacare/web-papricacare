@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Router from 'next/router';
 
+
 const SearchedResult = ({searchedValue, result, setResultOpen, clearValue}) => {
  
  const resultClick = (el) =>  {
@@ -33,9 +34,11 @@ export default SearchedResult;
 
 
 const ResultContainer = styled.div`
-border: 1px solid black;
-overflow:scroll;
-
+border: 4px solid #ff8947;
+border-bottom-left-radius: 3rem;
+border-bottom-right-radius: 3rem;
+border-top: none;
+padding-left: 1rem;
 `
 
 const ResultItem = styled.div`

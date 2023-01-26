@@ -1,13 +1,10 @@
 import axios from "axios";
-import Footer from "../components/footer";
-import Navbar from "../components/Nav";
-
+import SelectContainer from '../components/SelectContainer/SelectContainer'
 
 export default function Home( ) {
   return (
  <div>
-  <br/>
-  <Footer/>
+<SelectContainer/>
  </div>
   )
 };
